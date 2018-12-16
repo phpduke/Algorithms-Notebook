@@ -3,6 +3,14 @@
  *  To obtain the actual flow, look at positive values only.
  * Status: Tested on kattis mincostmaxflow
  * Time: Approximately O(E^2) */
+/*INPUT: 
+//     - graph, constructed using AddEdge()
+//     - source
+//     - sink
+//
+// OUTPUT:
+//     - (maximum flow value, minimum cost value)
+//     - To obtain the actual flow, look at positive values only*/
 #pragma once
 
 #include <bits/extc++.h> /** keep-include */
