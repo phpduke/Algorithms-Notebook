@@ -1,0 +1,18 @@
+struct NOS { //To add - overflow optimization - always keep NOS reduced
+	ll num,den;
+	NOS() {}
+	NOS(ll num,ll den) : num(num),den(den) {}
+	NOS(const NOS &p) : num(p.num),den(p.den) {}
+	NOS operator + (const NOS &p) const { 
+		ll num_=num*p.den+den*p.num,den_=den*p.den;
+		ll G=__gcd(num_,den_);
+		num_/=G; den_/=G;
+		return NOS(num_,den_);
+	}
+	NOS operator - (const NOS &p) const {
+		ll num_=num*p.den-den*p.num,den_=den*p.den;
+		ll G=__gcd(num_,den_);
+		num_/=G; den_/=G;
+		return NOS(num_,den_);
+	}
+};
