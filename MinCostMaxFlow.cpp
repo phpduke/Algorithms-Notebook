@@ -61,16 +61,12 @@ struct MCMF {
 		}
 		rep(i,0,N) rep(j,0,N) totcost += cost[i][j] * flow[i][j];
 		return {totflow, totcost};
-	}
-	// If some costs can be negative, call this before maxflow:
+	} // If some costs can be negative, call this[setpi()] before maxflow:
 	void setpi(int s) { // (otherwise, leave this out)
 		fill(all(pi), INF); pi[s] = 0;
 		int it = N, ch = 1; ll v;
-		while (ch-- && it--)
-			rep(i,0,N) if (pi[i] != INF)
-				trav(to, ed[i]) if (cap[i][to])
-					if ((v = pi[i] + cost[i][to]) < pi[to])
-						pi[to] = v, ch = 1;
+		while (ch-- && it--) rep(i,0,N) if (pi[i] != INF) trav(to, ed[i]) if (cap[i][to])
+			if ((v = pi[i] + cost[i][to]) < pi[to]) pi[to] = v, ch = 1;
 		assert(it >= 0); // negative cost cycle
 	}
 };
