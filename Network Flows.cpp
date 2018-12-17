@@ -1,5 +1,4 @@
-//Dinic Fast Flow - spoj
-struct flow_graph{
+struct flow_graph{//Dinic Fast Flow - spoj
     int MAX_V,E,s,t,head,tail;
     int *cap,*to,*next,*last,*dist,*q,*now;
     flow_graph(){}
