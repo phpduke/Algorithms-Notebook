@@ -1,16 +1,13 @@
 /* Min-cost max-flow. cap[i][j] != cap[j][i] is allowed; double edges are not.
  *  If costs can be negative, call setpi before maxflow, but note that negative cost cycles are not supported.
  *  To obtain the actual flow, look at positive values only. Time: Approximately O(E^2) */
-/*INPUT: 
-//     - graph, constructed using AddEdge()
-//     - source
-//     - sink
-// OUTPUT:
-//     - (maximum flow value, minimum cost value)
-//     - To obtain the actual flow, look at positive values only*/
+/*INPUT:      - graph, constructed using AddEdge()
+//            - source
+//            - sink
+// OUTPUT:     - (maximum flow value, minimum cost value)
+//     	       - To obtain the actual flow, look at positive values only*/
 #include <bits/extc++.h> /** keep-include */
-const ll INF = numeric_limits<ll>::max() / 4;
-typedef vector<ll> VL;
+const ll INF = numeric_limits<ll>::max() / 4; typedef vector<ll> VL;
 struct MCMF {
 	int N;
 	vector<vi> ed, red;
