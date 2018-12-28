@@ -136,8 +136,7 @@ class SimpleMaxFlow {
         }   return 0;
     }
     int flow(int _s, int _t) {
-        s = _s; t = _t;
-        int f = 0;
+        s = _s; t = _t; int f = 0;
         while(int inc = pfs_aug()) {
             f += inc;
             int cur = t;
@@ -146,11 +145,40 @@ class SimpleMaxFlow {
                 cap[cur][where[cur]] += inc;
                 cur = where[cur];
             }
-        }
-        return f;
+        } return f;
     }
     /*void disp() {
         cerr << endl<< "Flow from " << s << " to " << t << endl;
         for(int i = 0; i < n; ++i) for(int j = 0; j < n; ++j) if(initial_cap[i][j] > 0) {cerr << i << " " << j << " " << cap[i][j] << "/" << initial_cap[i][j] << endl;}
         cerr << endl;
     }*/};
+typedef vector<int> vi; //////////////[HOPCRAFT]////////////////////
+#define all(x) x.begin(), x.end()
+#define trav(a, x) for(auto& a : x)
+#define rep(i, a, b) for(int i = a; i < (b); ++i)
+#define sz(x) (int)(x).size()
+bool dfs_(int a,int layer,const vector<vi>& g,vi& btoa,vi& A,vi& B) {
+	if (A[a] != layer) return 0; A[a] = -1;
+	trav(b, g[a]) if (B[b] == layer + 1) {B[b] = -1;
+		if (btoa[b]==-1 || dfs_(btoa[b],layer+2,g,btoa,A,B)) return btoa[b]=a,1;}
+	return 0;
+}
+int hopcroftKarp(const vector<vi>& g, vi& btoa) {
+    int res=0;vi A(g.size()), B(btoa.size()), cur, next;
+	for (;;) {
+		fill(all(A), 0); fill(all(B), -1);
+		cur.clear();/// Find the starting nodes for BFS (i.e. layer 0).
+		trav(a, btoa) if(a != -1) A[a] = -1;
+		rep(a,0,sz(g)) if(A[a] == 0) cur.push_back(a);
+		for (int lay=1;;lay+=2) {/// Find all layers using bfs.
+			bool islast = 0;next.clear();
+			trav(a, cur) trav(b, g[a]) {
+				if (btoa[b]==-1) B[b]=lay,islast=1;
+				else if (btoa[b]!=a && B[b]==-1) B[b]=lay,next.push_back(btoa[b]);
+			}
+			if (islast) break; if (next.empty()) return res;
+			trav(a,next) A[a]=lay+1; cur.swap(next);
+		}/// Use dfs_ to scan for augmenting paths.
+		rep(a,0,sz(g)) if(dfs_(a, 0, g, btoa, A, B)) ++res;
+	}
+}
