@@ -1,7 +1,6 @@
 double INF = 1e100;
 double EPS = 1e-12;
 const double PI = 3.14159265358979323846264338327950288419716939937510L;
-
 struct PT { 
   double x, y; 
   PT() {}
@@ -81,10 +80,7 @@ PT PointReflectByLine(PT a,PT b,PT p) {
 }
 
 // compute distance from c to segment between a and b
-double DistancePointSegment(PT a, PT b, PT c) {
-  return sqrt(dist2(c, ProjectPointSegment(a, b, c)));
-}
-
+double DistancePointSegment(PT a,PT b,PT c){return sqrt(dist2(c,ProjectPointSegment(a,b,c)));}
 // compute distance between point (x,y,z) and plane ax+by+cz=d
 double DistancePointPlane(double x, double y, double z,
                           double a, double b, double c, double d) {
@@ -182,7 +178,6 @@ vector<PT> CircleLineIntersection(PT a, PT b, PT c, double r) {
     ret.push_back(c+a+b*(-B-sqrt(D))/A);
   return ret;
 }
-
 // compute intersection of circle centered at a with radius r
 // with circle centered at b with radius R
 vector<PT> CircleCircleIntersection(PT a, PT b, double r, double R) {
@@ -193,8 +188,7 @@ vector<PT> CircleCircleIntersection(PT a, PT b, double r, double R) {
   double y = sqrt(r*r-x*x);
   PT v = (b-a)/d;
   ret.push_back(a+v*x + RotateCCW90(v)*y);
-  if (y > 0)
-    ret.push_back(a+v*x - RotateCCW90(v)*y);
+  if (y > 0) ret.push_back(a+v*x - RotateCCW90(v)*y);
   return ret;
 }
 
