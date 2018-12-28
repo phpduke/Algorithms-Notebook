@@ -1,13 +1,5 @@
-//3:55-16:19
-//
-//Solution for : https://www.hackerearth.com/practice/algorithms/graphs/articulation-points-and-bridges/tutorial/
-//
-//Code Source: https://e-maxx-eng.appspot.com/graph/bridge-searching.html
-// https://e-maxx-eng.appspot.com/graph/cutpoints.html
-//
-//
+//Solution for : https://www.hackerearth.com/practice/algorithms/graphs/articulation-points-and-bridges/tutorial/ [e-maxx]
 //INPUT : vector<int> g[100010]; Works on disconnected undirected graph too
-
 #include<bits/stdc++.h>
 #define pb push_back
 using namespace std;
@@ -33,8 +25,7 @@ void dfs_cutpoints(int x,int par=-1) {
 void find_cutpoints() {
     timez=0;
     vis.assign(n,false),low.assign(n,-1),d.assign(n,-1);
-    for (int i=0;i<n;i++) 
-        if (!vis[i]) dfs_cutpoints(i);
+    for (int i=0;i<n;i++) if (!vis[i]) dfs_cutpoints(i);
 }
 void dfs_bridges(int x,int par=-1) {
     vis[x]=true;
@@ -53,8 +44,7 @@ void dfs_bridges(int x,int par=-1) {
 void find_bridges() {
     timez=0;
     vis.assign(n,false),low.assign(n,-1),d.assign(n,-1);
-    for (int i=0;i<n;i++)
-        if (!vis[i]) dfs_bridges(i);
+    for (int i=0;i<n;i++) if (!vis[i]) dfs_bridges(i);
 }
 void outputsort() {
     sort(cutpoints.begin(),cutpoints.end());
@@ -65,9 +55,7 @@ void outputsort() {
 int main() {ios::sync_with_stdio(false);cin.tie(0);
     cin>>n>>m;
     for (int i=0;i<m;i++) cin>>u>>v,g[u].pb(v),g[v].pb(u);
-    find_cutpoints();
-    find_bridges();
-    outputsort();
+    find_cutpoints(); find_bridges(); outputsort();
     cout<<cutpoints.size()<<"\n";
     for (auto cp: cutpoints) cout<<cp<<" ";cout<<"\n";
     cout<<bridges.size()<<"\n";
