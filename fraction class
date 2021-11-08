@@ -1,7 +1,12 @@
-struct NOS { //To add - overflow optimization - always keep NOS reduced
+struct NOS { 
 	ll num,den;
 	NOS() {}
-	NOS(ll num,ll den) : num(num),den(den) {}
+	NOS(ll numn) : num(num) {den = 1;}
+	NOS(ll num,ll den) : num(num),den(den) {
+	    ll G = __gcd(num, den);
+	    num /= G;
+	    den /= G;
+	}
 	NOS(const NOS &p) : num(p.num),den(p.den) {}
 	NOS operator + (const NOS &p) const { 
 		ll num_=num*p.den+den*p.num,den_=den*p.den;
@@ -14,5 +19,22 @@ struct NOS { //To add - overflow optimization - always keep NOS reduced
 		ll G=__gcd(num_,den_);
 		num_/=G; den_/=G;
 		return NOS(num_,den_);
+	}
+	NOS operator * (const NOS &p) const { 
+	    ll a = num, b = den, c = p.num, d = p.den;
+	    ll G1 = __gcd(a, d), G2 = __gcd(b, c);
+	    a /= G1; d /= G1;
+	    b /= G2; c /= G2;
+	    a *= c;
+	    b *= d;
+	    ll G = __gcd(a, b); //extra
+	    a /= G; b /= G;     //extra
+	    return NOS(a, b);
+	}
+	bool operator != (const NOS &p) const {
+		return (p.num != num or p.den != den);
+	}
+	bool operator == (const NOS &p) const {
+		return (p.num == num and p.den == den);
 	}
 };
