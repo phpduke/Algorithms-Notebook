@@ -5,6 +5,9 @@
 
 using namespace std;
 
+//COPY THE BLACKBOX, there is no need to change anything in it.
+//Check the main function at bottom for USAGE
+
 //****************BLACKBOX START*****************
 //START COPYING FROM HERE
 class Graph {
