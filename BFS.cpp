@@ -68,8 +68,9 @@ int main() {
   g.add_edge(1,3);
   g.add_edge(3,1);
  
-  //do BFS on the graph g start at Node 2
-  //an array of size "number of nodes" is returned with the minimum distance from Node 2 to each node.
+  //do BFS on the graph g start at `Node 2`
+  //An array of size "number of nodes" is returned with the minimum distance from `Node 2` to each node, i.e. `shortest path length from Node 2 -> Node 3 = min_dist[3] `
+  //If a `Node i` is unreachable from `Node 2`, then `min_dist[i]=-1` 
   vector<int>min_dist = BFS(g, 2);
  
 
