@@ -12,10 +12,10 @@ class Graph {
   list<int>* adjLists;
   bool* visited;
 
-   public:
-  Graph(int vertices);
-  void addEdge(int src, int dest);
-  void BFS(int startVertex);
+  public:
+    Graph(int vertices);
+    void addEdge(int src, int dest);
+    void BFS(int startVertex);
 };
 
 // Create a graph with given vertices,
@@ -28,7 +28,6 @@ Graph::Graph(int vertices) {
 // Add edges to the graph
 void Graph::addEdge(int src, int dest) {
   adjLists[src].push_back(dest);
-  adjLists[dest].push_back(src);
 }
 
 // BFS algorithm
