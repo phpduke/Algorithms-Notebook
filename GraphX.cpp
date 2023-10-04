@@ -36,7 +36,7 @@ class Graph {
     	int n,N=5000000;
     	Hash h;
 
-		Graph(int n_, bool is_directed_){
+		Graph(int n_, bool is_directed_ = true){
 			n=n_; is_directed = is_directed_;
 			adj.resize(N,vector<pair<int,ll>>());
 		}
