@@ -77,10 +77,11 @@ public class GraphTemplate {
             adjList.get(v).add(u); // Remove this line for directed graphs
         }
 
-        public int bfs(int start, int end) {
+        // Returns an array with the shortest distances from the start node to all other nodes
+        public int[] bfs(int start) {
             boolean[] visited = new boolean[V];
             int[] distance = new int[V];
-            Arrays.fill(distance, -1);
+            Arrays.fill(distance, -1); // -1 indicates that the node is not reachable
 
             Queue<Integer> queue = new LinkedList<>();
             queue.offer(start);
@@ -89,10 +90,6 @@ public class GraphTemplate {
 
             while (!queue.isEmpty()) {
                 int current = queue.poll();
-
-                if (current == end) {
-                    return distance[current];
-                }
 
                 for (int neighbor : adjList.get(current)) {
                     if (!visited[neighbor]) {
@@ -103,7 +100,7 @@ public class GraphTemplate {
                 }
             }
 
-            return -1; // Path not found
+            return distance;
         }
     }
 
@@ -122,11 +119,14 @@ public class GraphTemplate {
             graph.addEdge(u, v);
         }
 
-        int start = fr.nextInt();
-        int end = fr.nextInt();
+        int start = fr.nextInt(); // Starting node for BFS
 
-        int shortestPath = graph.bfs(start, end);
-        out.println(shortestPath);
+        int[] distances = graph.bfs(start);
+
+        // Output the shortest distance to all nodes
+        for (int i = 0; i < distances.length; i++) {
+            out.println("Shortest distance from node " + start + " to node " + i + " is " + distances[i]);
+        }
 
         out.close();
     }
