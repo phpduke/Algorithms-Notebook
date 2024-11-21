@@ -155,11 +155,11 @@ int main() {
 
  //DIRECTED GRAPH 2D (useful for grid problems): add edges `Node {0,1} -> Node {2,4}` and `Node {3,1} -> Node {3,3}`
   g.add_edge(0,1,2,4);
-  g.add_edge(3,1,3,1);
+  g.add_edge(3,1,3,3);
   
   //UNDIRECT GRAPH 2D (useful for grid problems): add edges between `Node {0,1} -- Node {2,4}` and `Node {3,1} -- Node {3,3}`
   g.add_edge(0,1,2,4);
-  g.add_edge(3,1,3,1);
+  g.add_edge(3,1,3,3);
   
   
   
