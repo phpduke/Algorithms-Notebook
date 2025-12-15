@@ -1,0 +1,15 @@
+# Python
+venv/
+__pycache__/
+*.pyc
+
+# Build artifacts
+build/
+dist/
+*.so
+*.pyd
+*.dll
+
+# OS
+.DS_Store
+Thumbs.db
